@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Trails Database Project</title>
+  <meta charset="utf-8">
+  <!-- Using bootstrap for easier, standard styling and div placement -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+</head>
+
+<!-- Navbar -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/index">Home</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/trail">Trails</a></li>
+      <li><a href="/contact">Contacts</a></li>
+      <li><a href="/user">Users</a></li>
+      <li><a href="/review">Reviews</a></li>
+      <li><a href="/location">Locations</a></li>
+    </ul>
+  </div>
+</nav> <!-- End navbar -->
+
+<body>
+  <!-- Main container -->
+  <div class="container">
+    <div class="row">
+      <h3 class="text-center text-primary" style="font-size:200%; color:#DC143C;">Reviews</h3>
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr class="active">
+            <th scope="col">ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+            <!-- Begin getting each review from db -->
+            {{#each review}}
+
+            <tr>
+              <th scope="row">{{id}}</th>
+              <td>{{date}}</td>
+              <td>{{comment}}</td>
+              <td><button type="button" class="btn btn-info" onclick="deleteReview({{id}})">Delete</button></td>
+              <td><button type="button" class="btn btn-light"><a href="/review/{{id}}">Update</a></button></td>
+            </tr>
+
+            {{/each}} <!-- End getting each review -->
+        </tbody>
+      </table> <!-- End table -->
+    </div> <!-- End data section -->
+
+  </div> <!-- End main container -->
+
+  <!-- Form -->
+  <div class="container">
+    <h3 class="text-center text-primary" style="font-size:200%; color:#DC143C;">Add New Review</h3>
+    <form id="addReview" action="/review" method="post">
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" name="date" class="form-control" id="date" placeholder="Date">
+      </div>
+      <div class="form-group">
+        <label for="comment">Comment</label>
+        <input type="textarea" name="comment" class="form-control" id="comment" placeholder="Comment">
+      </div>
+      <button class="btn btn-primary">
+        <input type="submit" value="Submit">
+      </button>
+    </form>
+
+  </div>
+  <!-- End form -->
+
+</body>
+
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Trails Database Project</title>
+  <meta charset="utf-8">
+  <!-- Using bootstrap for easier, standard styling and div placement -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+</head>
+
+<!-- Navbar -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/index">Home</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/trail">Trails</a></li>
+      <li><a href="/contact">Contacts</a></li>
+      <li><a href="/user">Users</a></li>
+      <li><a href="/review">Reviews</a></li>
+      <li><a href="/location">Locations</a></li>
+    </ul>
+  </div>
+</nav> <!-- End navbar -->
+
+<!-- Form -->
+<div class="container">
+  <h3 class="text-center text-primary" style="font-size:200%; color:#DC143C;">Update {{contact.orgName}}</h3>
+
+  <form id="update-contact" action="/contact" method="post">
+    <div class="form-group">
+      <label for="contactName">Contact Name</label>
+      <input type="text" name="orgName" class="form-control" id="contactName" value="{{contact.orgName}}">
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input type="text" name="orgAddress" class="form-control" id="address" value="{{contact.orgAddress}}">
+    </div>
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" name="city" class="form-control" id="city" value="{{contact.city}}">
+    </div>
+    <div class="form-group">
+      <label for="state">State</label>
+      <input type="text" name="state" class="form-control" id="state" value="{{contact.state}}">
+    </div>
+    <div class="form-group">
+      <label for="zipCode">Zip Code</label>
+      <input type="number" name="zipCode" class="form-control" id="zipCode" value="{{contact.zipCode}}">
+    </div>
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number</label>
+      <input type="number" name="phoneNumber" class="form-control" id="phoneNumber" value="{{contact.phoneNumber}}">
+    </div>
+    <div class="form-group">
+      <label for="websiteURL">Website URL</label>
+      <input type="text" name="websiteURL" class="form-control" id="websiteURL" value="{{contact.websiteURL}}">
+    </div>
+    <button class="btn btn-primary" onclick="updateContact({{contact.id}})">
+      Update
+    </button>
+  </form>
+
+</div>
+<!-- End form -->

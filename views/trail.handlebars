@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Trails Database Project</title>
+  <meta charset="utf-8">
+  <!-- Using bootstrap for easier, standard styling and div placement -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+</head>
+
+<!-- Navbar -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/index">Home</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/trail">Trails</a></li>
+      <li><a href="/contact">Contacts</a></li>
+      <li><a href="/user">Users</a></li>
+      <li><a href="/review">Reviews</a></li>
+      <li><a href="/location">Locations</a></li>
+    </ul>
+  </div>
+</nav> <!-- End navbar -->
+
+
+<body>
+  <!-- Main title -->
+  <div class="container-fluid">
+    <div class="row" style="background-color:#DC143C;">
+      <div class="col-lg-12">
+        <span style="font-size:500%;color:white;"><center>WA State Trails</center></span></h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main container -->
+  <div class="container">
+    <div class="row">
+      <h3 class="text-center text-primary" style="font-size:200%; color:#DC143C;">Trails Info</h3>
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr class="active">
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Distance</th>
+            <th scope="col">Difficulty</th>
+            <th scope="col">Elevation Gain</th>
+            <th scope="col">Dog Friendly</th>
+            <th scope="col">Season</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Begin getting each trail from db -->
+          {{#each trail}}
+
+          <tr>
+            <th scope="row">{{id}}</th>
+            <td>{{trailName}}</td>
+            <td>{{distance}}</td>
+            <td>{{difficulty}}</td>
+            <td>{{elevationGain}}</td>
+            <td>{{dogFriendly}}</td>
+            <td>{{season}}</td>
+            <td><button type="button" class="btn btn-info" onclick="deleteTrail({{id}})">Delete</button></td>
+            <td><button type="button" class="btn btn-light"><a href="/trail/{{id}}">Update</a></button></td>
+          </tr>
+
+          {{/each}} <!-- End getting each trail -->
+        </tbody>
+      </table>
+      <!-- End table -->
+
+    </div>
+    <!-- End data section -->
+
+
+  </div>
+  <!-- End main container -->
+
+  <!-- Form -->
+  <div class="container">
+    <h3 class="text-center text-primary" style="font-size:200%; color:#DC143C;">Add New Trails</h3>
+    <form id="addTrail" action="/trail" method="post">
+      <div class="form-group">
+        <label for="trailName">Trail Name</label>
+        <input type="text" name="trailName" class="form-control" id="trailName" aria-describedby="trailName" placeholder="Enter Trail Name">
+      <div class="form-group">
+        <label for="distance">Distance</label>
+        <input type="number" name="distance" class="form-control" id="distance" placeholder="Distance">
+      </div>
+      <div class="form-group">
+        <label for="difficultySelect">Difficulty</label>
+        <select class="form-control" name="difficulty" id="difficultySelect">
+          <option>Easy</option>
+          <option>Moderate</option>
+          <option>Moderately Difficult</option>
+          <option>Difficult</option>
+          <option>Very Difficult</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="elevationGain">Elevation Gain</label>
+        <input type="number" name="elevationGain" class="form-control" id="elevationGain" placeholder="Elevation Gain">
+      </div>
+      <div class="form-group">
+        <label for="dogFriendly">Dog Friendly</label>
+        <select class="form-control" name="dogFriendly" id="dogFriendly">
+          <option>YES</option>
+          <option>NO</option>
+          <option>UNKNOWN</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="season">Season</label>
+        <select class="form-control" name="season" id="season">
+          <option>winter</option>
+          <option>spring</option>
+          <option>summer</option>
+          <option>fall</option>
+          <option>year round</option>
+        </select>
+      </div>
+      <button class="btn btn-primary">
+        <input type="submit" value="Submit">
+      </button>
+    </form>
+
+  </div>
+  <!-- End form -->
+
+</body>
+
+</html>
